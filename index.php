@@ -192,6 +192,7 @@ if ($d2 == 0) {
     </div>
     <?php endif; ?>
 </div>
+<button class="btn-export" onclick="exportImage()">📷 Export as Image</button>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 function exportImage() {
