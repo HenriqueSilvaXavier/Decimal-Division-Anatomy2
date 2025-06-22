@@ -192,5 +192,22 @@ if ($d2 == 0) {
     </div>
     <?php endif; ?>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function exportImage() {
+    const alvo = document.getElementById("structure-container");
+
+    html2canvas(alvo, {
+        scrollY: -window.scrollY, // garante captura do topo mesmo com rolagem
+        windowWidth: document.documentElement.scrollWidth,
+        windowHeight: document.documentElement.scrollHeight
+    }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "division.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+}
+</script>
 </body>
 </html>
