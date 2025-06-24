@@ -214,5 +214,32 @@ if ($d2 == 0) {
     </div>
     <?php endif; ?>
 </div>
+<button class="btn-export" onclick="exportImage()">📷 Export as Image</button>
+
+<!-- Script html2canvas (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    function exportImage() {
+    const scrollableDiv = document.getElementById('structure-container');
+  
+    // Clonar o conteúdo inteiro, sem o scroll
+    const clone = scrollableDiv.cloneNode(true);
+    clone.style.width = scrollableDiv.scrollWidth + 'px';
+    clone.style.height = scrollableDiv.scrollHeight + 'px';
+    clone.style.overflow = 'visible';
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px'; // esconder da tela
+
+    document.body.appendChild(clone);
+
+    html2canvas(clone).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'division.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        document.body.removeChild(clone);
+    });
+}
+</script>
 </body>
 </html>
